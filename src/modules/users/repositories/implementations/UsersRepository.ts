@@ -31,7 +31,8 @@ export class UsersRepository implements IUsersRepository {
 
   async findAllUsersOrderedByFirstName(): Promise<User[]> {
     return await this.repository.query(`
-      SELECT * FROM users
+      SELECT * 
+      FROM users
       ORDER BY first_name ASC
       `); // Complete usando raw query
   }
@@ -41,7 +42,8 @@ export class UsersRepository implements IUsersRepository {
     last_name,
   }: IFindUserByFullNameDTO): Promise<User[] | undefined> {
     return await this.repository.query(`
-    SELECT * FROM users
+    SELECT * 
+    FROM users
     WHERE LOWER(first_name) = LOWER('${first_name}') AND LOWER(last_name) = LOWER('${last_name}')
     `); // Complete usando raw query
   }
