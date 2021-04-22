@@ -23,9 +23,6 @@ export class UsersRepository implements IUsersRepository {
       throw new Error("User does not exist!");
     }
 
-    console.log("user", user);
-    console.log("games", user.games);
-
     return user;
   }
 
@@ -34,7 +31,7 @@ export class UsersRepository implements IUsersRepository {
       SELECT * 
       FROM users
       ORDER BY first_name ASC
-      `); // Complete usando raw query
+    `); // Complete usando raw query
   }
 
   async findUserByFullName({
@@ -42,9 +39,9 @@ export class UsersRepository implements IUsersRepository {
     last_name,
   }: IFindUserByFullNameDTO): Promise<User[] | undefined> {
     return await this.repository.query(`
-    SELECT * 
-    FROM users
-    WHERE LOWER(first_name) = LOWER('${first_name}') AND LOWER(last_name) = LOWER('${last_name}')
+      SELECT * 
+      FROM users
+      WHERE LOWER(first_name) = LOWER('${first_name}') AND LOWER(last_name) = LOWER('${last_name}')
     `); // Complete usando raw query
   }
 }
